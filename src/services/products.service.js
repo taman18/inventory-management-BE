@@ -34,6 +34,9 @@ const updateProductService = async (productId, data) => {
 
 const getProductByIdService = async (productId) => {
   const product = await Product.findById(productId);
+  if (!product) {
+    throw new ApiError("Product not found", 404, "INVALID_REQUEST");
+  }
   return product;
 };
 
