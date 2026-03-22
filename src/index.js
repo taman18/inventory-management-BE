@@ -13,16 +13,10 @@ const PORT = process.env.PORT ?? 8000;
 // connect database
 connectDB();
 
-const corsOptions = {
-    origin: 'https://inventory-management-9k2t.onrender.com',
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: ['Content-Type', 'Authorization']
-};
-
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use("/api/v1", router);
 
