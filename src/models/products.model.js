@@ -12,6 +12,7 @@ const productSchema = new Schema({
         type: Number,
         min: [0, 'Price cannot be negative'],
         required: [true, 'Price is required'],
+        default: 0,
     },
     quantity: {
         type: Number,

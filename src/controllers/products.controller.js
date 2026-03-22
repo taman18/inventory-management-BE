@@ -54,7 +54,7 @@ const updateProductController = async (req, res, next) => {
         if (!productId) {
             throw new ApiError("Product ID is mandatory. Please send with request", 400, 'INVALID_REQUEST');
         }
-        const updatedProduct = await updateProductService(productData, productId);
+        const updatedProduct = await updateProductService(productId, productData);
         sendResponse(res, 200, { message: 'Product Updated Successfully', data: updatedProduct })
     }
     catch (error) {
@@ -72,7 +72,7 @@ const updateProductCategoryController = async (req, res, next) => {
         if (!productId) {
             throw new ApiError("Product ID is mandatory. Please send with request", 400, 'INVALID_REQUEST');
         }
-        const updatedProduct = await updateProductCategoryService(categoryName, productId);
+        const updatedProduct = await updateProductService(productId, categoryName);
         sendResponse(res, 200, { message: 'Category Updated Successfully', data: updatedProduct })
     }
     catch (error) {
