@@ -1,7 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { addProductController, getAllProductsController, deleteProductByIdController, updateProductController, updateProductCategoryController, getProductByIdController } = require('../controllers/products.controller');
-const validateObjectId = require('../middlewares/validateObject.middleware');
+const {
+  addProductController,
+  getAllProductsController,
+  deleteProductByIdController,
+  updateProductController,
+  updateProductCategoryController,
+  getProductByIdController,
+} = require("../controllers/products.controller");
+const validateObjectId = require("../middlewares/validateObject.middleware");
 
 /**
  * @swagger
@@ -9,13 +16,13 @@ const validateObjectId = require('../middlewares/validateObject.middleware');
  *   get:
  *     summary: Get all products
  *     description: Get all products
- *     tags: 
+ *     tags:
  *       - Products
  *     responses:
  *       200:
  *         description: Products fetched Successfuly.
  */
-router.get('/products', getAllProductsController);
+router.get("/products", getAllProductsController);
 
 /**
  * @swagger
@@ -100,7 +107,7 @@ router.get('/products', getAllProductsController);
  *       500:
  *         description: Internal server error
  */
-router.post('/products/add-product', addProductController);
+router.post("/products/add-product", addProductController);
 
 /**
  * @swagger
@@ -108,7 +115,7 @@ router.post('/products/add-product', addProductController);
  *   delete:
  *     summary: Delete a product
  *     description: Delete a product by product ID
- *     tags: 
+ *     tags:
  *       - Products
  *     parameters:
  *       - name: productId
@@ -123,7 +130,11 @@ router.post('/products/add-product', addProductController);
  *       404:
  *         description: Product not found
  */
-router.delete('/delete-product/:productId',validateObjectId, deleteProductByIdController);
+router.delete(
+  "/delete-product/:productId",
+  validateObjectId,
+  deleteProductByIdController,
+);
 
 /**
  * @swagger
@@ -131,7 +142,7 @@ router.delete('/delete-product/:productId',validateObjectId, deleteProductByIdCo
  *   put:
  *     summary: update a product
  *     description: update a product by product ID
- *     tags: 
+ *     tags:
  *       - Products
  *     requestBody:
  *       required: true
@@ -154,7 +165,7 @@ router.delete('/delete-product/:productId',validateObjectId, deleteProductByIdCo
  *               category:
  *                 type: string
  *                 example: "Electronics"
- *               price: 
+ *               price:
  *                  type: number
  *                  example: 80000
  *     parameters:
@@ -170,7 +181,11 @@ router.delete('/delete-product/:productId',validateObjectId, deleteProductByIdCo
  *       404:
  *         description: Product not found
  */
-router.put('/update-product/:productId',validateObjectId, updateProductController);
+router.put(
+  "/update-product/:productId",
+  validateObjectId,
+  updateProductController,
+);
 
 /**
  * @swagger
@@ -178,7 +193,7 @@ router.put('/update-product/:productId',validateObjectId, updateProductControlle
  *   patch:
  *     summary: update a category
  *     description: update a product category by product ID
- *     tags: 
+ *     tags:
  *       - Products
  *     requestBody:
  *       required: true
@@ -205,7 +220,11 @@ router.put('/update-product/:productId',validateObjectId, updateProductControlle
  *       404:
  *         description: Product not found
  */
-router.patch('/update-category/:productId',validateObjectId, updateProductCategoryController);
+router.patch(
+  "/update-category/:productId",
+  validateObjectId,
+  updateProductCategoryController,
+);
 
 /**
  * @swagger
@@ -213,7 +232,7 @@ router.patch('/update-category/:productId',validateObjectId, updateProductCatego
  *   get:
  *     summary: Get product by product ID
  *     description: Get product by product ID
- *     tags: 
+ *     tags:
  *       - Products
  *     parameters:
  *       - name: productId
@@ -226,6 +245,6 @@ router.patch('/update-category/:productId',validateObjectId, updateProductCatego
  *       200:
  *         description: Product fetched Successfuly.
  */
-router.get('/product/:productId',validateObjectId, getProductByIdController);
+router.get("/product/:productId", validateObjectId, getProductByIdController);
 
 module.exports = router;
