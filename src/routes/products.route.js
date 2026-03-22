@@ -42,6 +42,7 @@ router.get("/products", getAllProductsController);
  *               - name
  *               - quantity
  *               - category
+ *               - price
  *             properties:
  *               name:
  *                 type: string
@@ -52,6 +53,9 @@ router.get("/products", getAllProductsController);
  *               category:
  *                 type: string
  *                 example: "Electronics"
+ *               price:
+ *                  type: number
+ *                  example: 400
  *     responses:
  *       201:
  *         description: Product created successfully

@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://inventory-management-9k2t.onrender.com/api/v1",
+        url: process.env.SWAGGER_URI,
       },
     ],
   },

@@ -15,7 +15,8 @@ const addProductController = async (req, res, next) => {
     if (
       !productData?.name ||
       !productData?.quantity ||
-      !productData?.category
+      !productData?.category ||
+      !productData?.price
     ) {
       throw new ApiError(
         "Invalid input. Please provide all required product details.",
