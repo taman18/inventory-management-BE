@@ -26,7 +26,7 @@ const addProductController = async (req, res, next) => {
     }
     const product = await createProductService(productData);
     sendResponse(res, 201, {
-      message: "Product created succesfully",
+      message: "Product created successfully",
       data: product,
     });
   } catch (error) {
@@ -38,7 +38,7 @@ const getAllProductsController = async (req, res, next) => {
   try {
     const allProducts = await getAllProductsService();
     sendResponse(res, 200, {
-      message: "All Products fetched succesfully",
+      message: "All Products fetched successfully",
       data: allProducts,
     });
   } catch (error) {

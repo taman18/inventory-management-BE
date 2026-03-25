@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const productRouter = express.Router();
 const {
   addProductController,
   getAllProductsController,
@@ -9,10 +9,11 @@ const {
   getProductByIdController,
 } = require("../controllers/products.controller");
 const validateObjectId = require("../middlewares/validateObject.middleware");
+const { createNewUserController } = require("../controllers/users.controller");
 
 /**
  * @swagger
- * /products:
+ * /products/fetch-all-products:
  *   get:
  *     summary: Get all products
  *     description: Get all products
@@ -22,7 +23,7 @@ const validateObjectId = require("../middlewares/validateObject.middleware");
  *       200:
  *         description: Products fetched Successfuly.
  */
-router.get("/products", getAllProductsController);
+productRouter.get("/fetch-all-products", getAllProductsController);
 
 /**
  * @swagger
@@ -111,11 +112,11 @@ router.get("/products", getAllProductsController);
  *       500:
  *         description: Internal server error
  */
-router.post("/products/add-product", addProductController);
+productRouter.post("/add-product", addProductController);
 
 /**
  * @swagger
- * /delete-product/{productId}:
+ * /products/delete-product/{productId}:
  *   delete:
  *     summary: Delete a product
  *     description: Delete a product by product ID
@@ -134,15 +135,15 @@ router.post("/products/add-product", addProductController);
  *       404:
  *         description: Product not found
  */
-router.delete(
+productRouter.delete(
   "/delete-product/:productId",
-  validateObjectId,
+  validateObjectId('productId'),
   deleteProductByIdController,
 );
 
 /**
  * @swagger
- * /update-product/{productId}:
+ * /products/update-product/{productId}:
  *   put:
  *     summary: update a product
  *     description: update a product by product ID
@@ -185,15 +186,15 @@ router.delete(
  *       404:
  *         description: Product not found
  */
-router.put(
+productRouter.put(
   "/update-product/:productId",
-  validateObjectId,
+  validateObjectId('productId'),
   updateProductController,
 );
 
 /**
  * @swagger
- * /update-category/{productId}:
+ * /products/update-category/{productId}:
  *   patch:
  *     summary: update a category
  *     description: update a product category by product ID
@@ -224,15 +225,15 @@ router.put(
  *       404:
  *         description: Product not found
  */
-router.patch(
+productRouter.patch(
   "/update-category/:productId",
-  validateObjectId,
+  validateObjectId('productId'),
   updateProductCategoryController,
 );
 
 /**
  * @swagger
- * /product/{productId}:
+ * /products/product/{productId}:
  *   get:
  *     summary: Get product by product ID
  *     description: Get product by product ID
@@ -249,6 +250,7 @@ router.patch(
  *       200:
  *         description: Product fetched Successfuly.
  */
-router.get("/product/:productId", validateObjectId, getProductByIdController);
+productRouter.get("/product/:productId", validateObjectId('productId'), getProductByIdController);
 
-module.exports = router;
+productRouter.post('/create-new-user', createNewUserController)
+module.exports = productRouter;
