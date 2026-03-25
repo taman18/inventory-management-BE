@@ -27,7 +27,7 @@ const productSchema = new Schema(
       minLength: [1, "Category cannot be empty"],
     },
   },
-  { timestamps: true },
+  { timestamps: true, versionKey: false },
 );
 
 const Product = mongoose.model("Product", productSchema);

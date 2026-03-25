@@ -13,7 +13,8 @@ const UserSchema = mongoose.Schema(
       required: [true, "Email is required"],
       trim: true,
       minLength: [1, "Email field cannot be empty"],
-      unique: true
+      unique: true,
+      index: true
     },
     age: {
       type: Number,
